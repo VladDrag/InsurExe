@@ -11,43 +11,44 @@ public enum InsuranceType
 
 public class InsuranceFactory
 {
-	public static InsuranceDb CreateInsurance(InsuranceType type, string description, double monthlyPayment, double amountInsured, int insuranceTime)
+	public InsuranceDb CreateInsurance(InsuranceDb insurance)
 	{
+		var type = insurance.Type;
 		return type switch
 		{
-			InsuranceType.Car => new CarInsuranceDb
+			"car" => new CarInsuranceDb
 			{
 				Specifics = "Car",
-				Description = description,
-				MonthlyPayment = monthlyPayment,
-				AmountInsured = amountInsured,
-				InsuranceTime = insuranceTime
+				Description = insurance.Description,
+				MonthlyPayment = insurance.MonthlyPayment,
+				AmountInsured = insurance.AmountInsured,
+				InsuranceTime = insurance.InsuranceTime
 			},
-			InsuranceType.Home => new HomeInsuranceDb
+			"home" => new HomeInsuranceDb
 			{
 				Specifics = "Home",
-				Description = description,
-				MonthlyPayment = monthlyPayment,
-				AmountInsured = amountInsured,
-				InsuranceTime = insuranceTime
+				Description = insurance.Description,
+				MonthlyPayment = insurance.MonthlyPayment,
+				AmountInsured = insurance.AmountInsured,
+				InsuranceTime = insurance.InsuranceTime
 			},
-			InsuranceType.Life => new LifeInsuranceDb
+			"life" => new LifeInsuranceDb
 			{
 				Specifics = "Life",
-				Description = description,
-				MonthlyPayment = monthlyPayment,
-				AmountInsured = amountInsured,
-				InsuranceTime = insuranceTime
+				Description = insurance.Description,
+				MonthlyPayment = insurance.MonthlyPayment,
+				AmountInsured = insurance.AmountInsured,
+				InsuranceTime = insurance.InsuranceTime
 			},
-			InsuranceType.Health => new HealthInsuranceDb
+			"health" => new HealthInsuranceDb
 			{
 				Specifics = "Health",
-				Description = description,
-				MonthlyPayment = monthlyPayment,
-				AmountInsured = amountInsured,
-				InsuranceTime = insuranceTime
+				Description = insurance.Description,
+				MonthlyPayment = insurance.MonthlyPayment,
+				AmountInsured = insurance.AmountInsured,
+				InsuranceTime = insurance.InsuranceTime
 			},
-			_ => throw new ArgumentException("Invalid insurance type", nameof(type))
+			_ => throw new ArgumentException("Invalid insurance type")
 		};
 	}
 }
