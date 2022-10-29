@@ -1,5 +1,6 @@
 namespace InsurExeApi.Models.Factories;
 using InsurExeApi.Models.DatabaseModels;
+using InsurExeApi.Models.DTOModels;
 
 public enum InsuranceType
 {
@@ -11,12 +12,12 @@ public enum InsuranceType
 
 public class InsuranceFactory
 {
-	public InsuranceDb CreateInsurance(InsuranceDb insurance)
+	public InsuranceDto CreateInsurance(InsuranceDb insurance)
 	{
 		var type = insurance.Type;
 		return type switch
 		{
-			"car" => new CarInsuranceDb
+			"car" => new CarInsuranceDto
 			{
 				Specifics = "Car",
 				Description = insurance.Description,
@@ -24,7 +25,7 @@ public class InsuranceFactory
 				AmountInsured = insurance.AmountInsured,
 				InsuranceTime = insurance.InsuranceTime
 			},
-			"home" => new HomeInsuranceDb
+			"home" => new HomeInsuranceDto
 			{
 				Specifics = "Home",
 				Description = insurance.Description,
@@ -32,7 +33,7 @@ public class InsuranceFactory
 				AmountInsured = insurance.AmountInsured,
 				InsuranceTime = insurance.InsuranceTime
 			},
-			"life" => new LifeInsuranceDb
+			"life" => new LifeInsuranceDto
 			{
 				Specifics = "Life",
 				Description = insurance.Description,
@@ -40,7 +41,7 @@ public class InsuranceFactory
 				AmountInsured = insurance.AmountInsured,
 				InsuranceTime = insurance.InsuranceTime
 			},
-			"health" => new HealthInsuranceDb
+			"health" => new HealthInsuranceDto
 			{
 				Specifics = "Health",
 				Description = insurance.Description,

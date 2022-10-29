@@ -1,5 +1,6 @@
 namespace InsurExeApi.Controllers;
 using InsurExeApi.Models.DatabaseModels;
+using InsurExeApi.Models.DTOModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InsurExeApi.Server;
@@ -9,17 +10,17 @@ using InsurExeApi.Models.Factories;
 [ApiController]
 public class InsurExeApiController: ControllerBase
 {
+	private InsuranceFactory _factory = new InsuranceFactory();
     [HttpGet()]
-    public List<InsuranceDb> GetAllInsurances()
+    public List<InsuranceDto> GetAllInsurances()
     {
         var databaseInfo = new DatabaseContext();
-		var factory = new InsuranceFactory();
-		var insurancesList = new List<InsuranceDb>();
+		var insurancesList = new List<InsuranceDto>();
 		foreach (var insurance in databaseInfo.InsuranceDatabase)
 		{
-			var insuranceDb = factory.CreateInsurance(insurance);
+			var insuranceDto = _factory.CreateInsurance(insurance);
 			// if (insuranceDb.GetType().Equals(typeof(CarInsuranceDb))) insurancesList.Add(insuranceDb);
-			insurancesList.Add(insuranceDb);
+			insurancesList.Add(insuranceDto);
 		}
 		return insurancesList;
 	}
