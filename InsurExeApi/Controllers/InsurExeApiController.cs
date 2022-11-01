@@ -11,12 +11,13 @@ using InsurExeApi.Models.Factories;
 public class InsurExeApiController: ControllerBase
 {
 	private InsuranceFactory _factory = new InsuranceFactory();
+	private List<InsuranceDb>? _insurDb = new DatabaseContext().InsuranceDatabase;
     [HttpGet()]
     public List<InsuranceDto> GetAllInsurances()
     {
         var databaseInfo = new DatabaseContext();
 		var insurancesList = new List<InsuranceDto>();
-		foreach (var insurance in databaseInfo.InsuranceDatabase)
+		foreach (var insurance in _insurDb)
 		{
 			var insuranceDto = _factory.CreateInsurance(insurance);
 			// if (insuranceDb.GetType().Equals(typeof(CarInsuranceDb))) insurancesList.Add(insuranceDb);
@@ -24,4 +25,17 @@ public class InsurExeApiController: ControllerBase
 		}
 		return insurancesList;
 	}
+
+	// [HttpGet("{id}")]
+	// public async Task<ActionResult<InsuranceDto>> GetInsurance(int id)
+	// {
+	// 	var databaseInfo = new DatabaseContext();
+	// 	var insurance = _insurDb.Find(id);
+	// 	if (insurance == null)
+	// 	{
+	// 		return NotFound();
+	// 	}
+	// 	var insuranceDto = _factory.CreateInsurance(insurance);
+	// 	return insuranceDto;
+	// }
 }
