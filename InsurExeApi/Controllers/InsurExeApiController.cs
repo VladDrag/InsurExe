@@ -15,7 +15,6 @@ public class InsurExeApiController: ControllerBase
     [HttpGet()]
     public List<InsuranceDto> GetAllInsurances()
     {
-        var databaseInfo = new DatabaseContext();
 		var insurancesList = new List<InsuranceDto>();
 		foreach (var insurance in _insurDb)
 		{
@@ -26,16 +25,15 @@ public class InsurExeApiController: ControllerBase
 		return insurancesList;
 	}
 
-	// [HttpGet("{id}")]
-	// public async Task<ActionResult<InsuranceDto>> GetInsurance(int id)
-	// {
-	// 	var databaseInfo = new DatabaseContext();
-	// 	var insurance = _insurDb.Find(id);
-	// 	if (insurance == null)
-	// 	{
-	// 		return NotFound();
-	// 	}
-	// 	var insuranceDto = _factory.CreateInsurance(insurance);
-	// 	return insuranceDto;
-	// }
+	[HttpGet("{id}")]
+	public async Task<ActionResult<InsuranceDto>> GetInsurance(string id)
+	{
+		var insurance = _insurDb.Find(ins => ins.Id == id);
+		if (insurance == null)
+		{
+			return NotFound();
+		}
+		var insuranceDto = _factory.CreateInsurance(insurance);
+		return insuranceDto;
+	}
 }
