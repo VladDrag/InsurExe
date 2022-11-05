@@ -1,10 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<InsuranceMovieContext>(options =>
+        options.UseSqlite(builder.Configuration.GetConnectionString("InsuranceMovieContext") ?? throw new InvalidOperationException("Connection string 'InsuranceMovieContext' not found.")));
 
 // Add services to the container.
 
 // https://localhost:7296/swagger/index.html for swagger testing
 
 builder.Services.AddControllers();
+//services.AddControllersWithViews();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
