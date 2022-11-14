@@ -13,9 +13,9 @@ namespace InsurExeApi.Controllers
     [ApiController]
     public class InsuranceController : Controller
     {
-        private readonly InsuranceMovieContext _context;
+        private readonly InsuranceContext _context;
 
-        public InsuranceController(InsuranceMovieContext context)
+        public InsuranceController(InsuranceContext context)
         {
             _context = context;
         }

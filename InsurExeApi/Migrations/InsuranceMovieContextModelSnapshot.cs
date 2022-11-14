@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InsurExeApi.Migrations
 {
-    [DbContext(typeof(InsuranceMovieContext))]
+    [DbContext(typeof(InsuranceContext))]
     partial class InsuranceMovieContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

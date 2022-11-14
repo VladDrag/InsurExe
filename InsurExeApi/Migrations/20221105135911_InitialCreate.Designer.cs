@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InsurExeApi.Migrations
 {
-    [DbContext(typeof(InsuranceMovieContext))]
+    [DbContext(typeof(InsuranceContext))]
     [Migration("20221105135911_InitialCreate")]
     partial class InitialCreate
     {

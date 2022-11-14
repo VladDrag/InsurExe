@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using InsurExeApi.Models.DatabaseModels;
 
-    public class InsuranceMovieContext : DbContext
+    public class InsuranceContext : DbContext
     {
-        public InsuranceMovieContext (DbContextOptions<InsuranceMovieContext> options)
+        public InsuranceContext (DbContextOptions<InsuranceContext> options)
             : base(options)
         {
         }
